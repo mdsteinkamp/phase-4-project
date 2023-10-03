@@ -1,13 +1,15 @@
+import { Route, Routes } from "react-router-dom"
 import '../App.css';
+import NavBar from "./NavBar";
+import Home from "./Home";
 
-function App() {
+export default function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>song tracker thingy</h1>
-      </header>
+      <NavBar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
     </div>
   );
 }
-
-export default App;
