@@ -1,11 +1,15 @@
-import { useState } from "react"
-import { Link } from "react-router-dom"
+import { useState, useContext } from "react"
+import { Link, useNavigate } from "react-router-dom"
+import { UserContext } from "./UserContext"
 
 export default function Login() {
   const [formData, setFormData] = useState({
     username: "",
     password: "",
   })
+  const {user, setUser} = useContext(UserContext)
+
+  const navigate = useNavigate()
 
   function handleChange(e) {
     const name = e.target.name
@@ -25,9 +29,22 @@ export default function Login() {
       },
       body: JSON.stringify(formData),
     })
-    .then((resp) => resp.json())
-    .then(user => console.log(user))
-  }
+    .then((resp) => {
+      if (resp.ok) {
+        resp.json().then((user) => {
+        setUser(user)
+        navigate("/songs")
+      })}
+    })
+}
+
+  // useEffect(() => {
+  //   fetch("/me").then((resp) => {
+  //     if (resp.ok) {
+  //       resp.json().then((user) => setUser(user));
+  //     }
+  //   });
+  // }, []);
 
   return (
     <div>

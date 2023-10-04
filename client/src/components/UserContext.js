@@ -6,9 +6,9 @@ function UserProvider({ children }) {
   const [user, setUser] = useState(null)
 
   useEffect(() => {
-    fetch("/me").then((response) => {
-      if (response.ok) {
-        response.json().then((user) => setUser(user));
+    fetch("/me").then((resp) => {
+      if (resp.ok) {
+        resp.json().then((user) => setUser(user));
       }
     });
   }, []);
@@ -19,12 +19,3 @@ function UserProvider({ children }) {
 }
 
 export { UserContext, UserProvider }
-
-// useEffect(() => {
-//   fetch("/me")
-//   .then((resp) => {
-//     if (resp.ok) {
-//       resp.json().then((user) => setUser())
-//     }
-//   })
-// }, [])
