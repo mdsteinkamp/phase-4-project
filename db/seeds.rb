@@ -1,4 +1,5 @@
 puts "seeding data..."
+User.destroy_all
 Song.destroy_all
 Chord.destroy_all
 

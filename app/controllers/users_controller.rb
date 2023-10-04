@@ -2,7 +2,8 @@ class UsersController < ApplicationController
   skip_before_action :authorize, only: [:create, :index]
 
   def index
-    render json: User.all
+    users = User.all
+    render json: users, include: :songs
   end
   
   def show

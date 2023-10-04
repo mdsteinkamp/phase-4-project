@@ -38,14 +38,6 @@ export default function Login() {
     })
 }
 
-  // useEffect(() => {
-  //   fetch("/me").then((resp) => {
-  //     if (resp.ok) {
-  //       resp.json().then((user) => setUser(user));
-  //     }
-  //   });
-  // }, []);
-
   return (
     <div>
       <h1>login here</h1>
