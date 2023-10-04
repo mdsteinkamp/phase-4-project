@@ -32,7 +32,7 @@ export default function Signup({ onSignup }){
       if (resp.ok) {
         resp.json().then((user) => setUser(user));
       } else {
-        resp.json().then(e => console.log(e))
+        resp.json().then(e => console.log(e.errors))
       }
     });
   }
