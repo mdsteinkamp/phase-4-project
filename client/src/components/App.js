@@ -15,10 +15,16 @@ export default function App() {
     fetch(("/logout"), {
       method: "DELETE",
     })
-    .then(resp => resp.json())
     .then(setUser(null))
-
   }
+
+  // .then((resp) => {
+  //   if (resp.ok) {
+  //     resp.json().then((user) => {
+  //     setUser(user)
+  //     navigate("/songs")
+  //   })}
+  // })
 
   return (
     <div className="App">
