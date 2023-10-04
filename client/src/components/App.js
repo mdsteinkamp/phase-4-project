@@ -18,14 +18,6 @@ export default function App() {
     .then(setUser(null))
   }
 
-  // .then((resp) => {
-  //   if (resp.ok) {
-  //     resp.json().then((user) => {
-  //     setUser(user)
-  //     navigate("/songs")
-  //   })}
-  // })
-
   return (
     <div className="App">
         <NavBar />

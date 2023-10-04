@@ -1,4 +1,5 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
+import { UserContext } from "./UserContext"
 
 export default function Signup({ onSignup }){
   const [formData, setFormData] = useState({
@@ -6,6 +7,8 @@ export default function Signup({ onSignup }){
     password: "",
     passwordConfirmation: ""
   })
+  const {user, setUser} = useContext(UserContext)
+
 
   function handleChange(e) {
     const name = e.target.name
@@ -25,8 +28,13 @@ export default function Signup({ onSignup }){
       },
       body: JSON.stringify(formData),
     })
-    .then((resp) => resp.json())
-    .then(newUser => onSignup(newUser))
+    .then((resp) => {
+      if (resp.ok) {
+        resp.json().then((user) => setUser(user));
+      } else {
+        resp.json().then(e => console.log(e))
+      }
+    });
   }
 
   return (
