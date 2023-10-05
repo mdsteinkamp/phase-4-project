@@ -3,16 +3,11 @@ import { UserContext } from "./UserContext"
 
 export default function SongsList() {
   const {user, setUser} = useContext(UserContext)
-  console.log(user)
 
-  function onlyUnique(value, index, array) {
-    return array.indexOf(value) === index;
-  }
-
-  const uniqueSongs = user.chords.map(chord => chord.song)
-  console.log(uniqueSongs)
-  const uniques = [...new Set(uniqueSongs.map(item => item.title))]
-  console.log(uniques)
+  // const uniqueSongs = user.chords.map(chord => chord.song)
+  // console.log(uniqueSongs)
+  // const uniques = [...new Set(uniqueSongs.map(item => item.title))]
+  // console.log(uniques)
 
 
   return (

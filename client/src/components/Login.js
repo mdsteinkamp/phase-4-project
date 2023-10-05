@@ -33,7 +33,7 @@ export default function Login() {
       if (resp.ok) {
         resp.json().then((user) => {
         setUser(user)
-        navigate("/songs")
+        navigate("/chords")
       })}
     })
 }
