@@ -1,5 +1,5 @@
 import { useContext, useState } from "react"
-import { NavLink } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 import { UserContext } from "./UserContext"
 
 export default function ChordPage({ chord }) {
@@ -14,6 +14,7 @@ export default function ChordPage({ chord }) {
     user_id: chord.user_id,
     song_id: chord.song_id
   })
+
 
   if (!user) return <h1>loading data...</h1>
 

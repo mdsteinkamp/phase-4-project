@@ -1,6 +1,6 @@
 import { useContext, useState } from "react"
 import { UserContext } from "./UserContext"
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 
 export default function ChordDetailPage() {
   const {user, setUser} = useContext(UserContext)
@@ -19,6 +19,7 @@ export default function ChordDetailPage() {
     user_id: chord.user_id,
     song_id: chord.song_id
   })
+  const navigate = useNavigate()
   console.log(user)
 
   if (!user) return <h1>loading data...</h1>
@@ -47,7 +48,7 @@ export default function ChordDetailPage() {
     console.log(updatedChords)
     const updatedUser = {...user, chords: updatedChords}
     setUser(updatedUser)
-    console.log(updatedUser)
+    navigate('/chords')
   }
 
   function handleEditChord() {
