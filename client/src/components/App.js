@@ -7,6 +7,7 @@ import Home from "./Home"
 import Login from "./Login"
 import Signup from "./Signup"
 import ChordsList from "./ChordsList"
+import ChordDetailPage from "./ChordDetailPage"
 import SongsList from "./SongsList"
 
 export default function App() {
@@ -31,6 +32,7 @@ export default function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/chords" element={<ChordsList />} />
+          <Route path="/chords/:id" element={<ChordDetailPage />} />
           <Route path="/songs" element={<SongsList />} />
         </Routes>
         {user ? <button onClick={handleLogout}>Log Out</button> : null}

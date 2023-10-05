@@ -1,4 +1,5 @@
 import { useContext, useState } from "react"
+import { NavLink } from "react-router-dom"
 import { UserContext } from "./UserContext"
 
 export default function ChordPage({ chord }) {
@@ -49,6 +50,7 @@ export default function ChordPage({ chord }) {
   return (
 
     <>
+      <NavLink to={`/chords/${chord.id}`}>{chord.name}</NavLink>
       <h1 key={chord.id}>{chord.name}</h1>
       <h3>Notes: {chord.notes}</h3>
       <h3>Inversion: {chord.inversion}</h3>
