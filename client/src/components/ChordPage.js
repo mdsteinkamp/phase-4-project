@@ -50,58 +50,11 @@ export default function ChordPage({ chord }) {
   return (
 
     <>
-      <NavLink to={`/chords/${chord.id}`}>{chord.name}</NavLink>
       <h1 key={chord.id}>{chord.name}</h1>
-      <h3>Notes: {chord.notes}</h3>
-      <h3>Inversion: {chord.inversion}</h3>
-      <p>Notes: {chord.comments}</p>
+      <h3>{chord.song.title} - {chord.song.artist}</h3>
+      <NavLink to={`/chords/${chord.id}`}>See Chord Details</NavLink>
+
       <br />
-      <button onClick={handleEditChord}>Edit Chord</button>
-      <div>
-        {!editChord ? null : 
-          <form onSubmit={handleChordEditSubmit}>
-            <input
-              type="text"
-              name="name"
-              placeholder="Name"
-              value={chordFormData.name}
-              onChange={handleChange}
-            />
-            <input
-              type="text"
-              name="notes"
-              placeholder="Notes in Chord"
-              value={chordFormData.notes}
-              onChange={handleChange}
-            />
-            <input
-              type="text"
-              name="inversion"
-              placeholder="Inverted Chord?"
-              value={chordFormData.inversion}
-              onChange={handleChange}
-            />            
-            <input
-              type="text"
-              name="comments"
-              placeholder="Comments"
-              value={chordFormData.comments}
-              onChange={handleChange}
-            />
-            <input
-              type="ted"
-              name="image_url"
-              placeholder="Image URL"
-              value={chordFormData.image}
-              onChange={handleChange}
-            />
-            <br />
-            <button>Update</button>
-          </form>
-        }
-      </div>
-      <br />
-      <button onClick={handleDeleteClick}>RemoveChord</button>
     </>
   )
 }
