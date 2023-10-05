@@ -11,6 +11,8 @@ import SongsList from "./SongsList"
 export default function App() {
   const {user, setUser} = useContext(UserContext)
 
+  console.log(user)
+
   function handleLogout() {
     fetch(("/logout"), {
       method: "DELETE",
