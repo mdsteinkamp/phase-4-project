@@ -6,9 +6,11 @@ class ChordsController < ApplicationController
   end
 
   def destroy
-    chord = Chord.find_by(id: params[:id])
-    chord.destroy
-    head :no_content
+    chord = @current_user.chords.find_by(id: params[:id])
+    if chord
+      chord.destroy
+      head :no_content
+    else render json: { error: "Not authorized to edit this chord" }, status: :unauthorized
   end
 
   def show

@@ -4,6 +4,7 @@ Song.destroy_all
 Chord.destroy_all
 
 test_user = User.create(username: "test", password: "1234")
+matts = User.create(username: "matts", password: "1234")
 
 song1 = Song.create(title: "Every Day is Exactly the Same", artist: "Nine Inch Nails", structure: "Verse: E5 C5(first inversion) x3 G5 F5 Chorus: E5 A5 C5 G5")
 song2 = Song.create(title: "No Tears Left to Cry", artist: "Ariana Grande", structure: "Intro: Am G F G Am G F C Dm Am C C Refrain/Verse: A7 F G Chorus: Am G F Am G F Em C Dm Am C C C/B")
@@ -25,5 +26,9 @@ Chord.create(name: "Dm", notes: "D, A, F", inversion: "none", comments: "First p
 Chord.create(name: "A7", notes: "A, E, G, C#", inversion: "none", comments: "First position A7", image_url: "", user_id: test_user.id, song_id: song2.id)
 Chord.create(name: "Em", notes: "E, B, G", inversion: "none", comments: "First position Em", image_url: "", user_id: test_user.id, song_id: song2.id)
 Chord.create(name: "C/B", notes: "B, E, G, E", inversion: "none", comments: "Drop A string on C chord to B", image_url: "", user_id: test_user.id, song_id: song2.id)
+
+Chord.create(name: "A", notes: "A, E, C#", inversion: "none", comments: "5th String Barre Chord", image_url: "", user_id: matts.id, song_id: song2.id)
+
+
 
 puts "done seeding!"
