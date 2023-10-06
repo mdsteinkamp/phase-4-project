@@ -7,6 +7,7 @@ export default function ChordDetailPage() {
   const [editChord, setEditChord] = useState(false)
   const { id } = useParams()
   const navigate = useNavigate()
+  console.log(user)
 
   const chord = user.chords.find(chord => chord.id === parseInt(id))
 
@@ -22,6 +23,8 @@ export default function ChordDetailPage() {
     user_id: chord.user_id,
     song_id: chord.song_id
   })
+
+
 
   console.log(chord)
 
