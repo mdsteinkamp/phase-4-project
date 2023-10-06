@@ -9,6 +9,7 @@ import Signup from "./Signup"
 import ChordsList from "./ChordsList"
 import ChordDetailPage from "./ChordDetailPage"
 import SongsList from "./SongsList"
+import AddChord from "./AddChord"
 
 export default function App() {
   const {user, setUser} = useContext(UserContext)
@@ -33,6 +34,7 @@ export default function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/chords" element={<ChordsList />} />
           <Route path="/chords/:id" element={<ChordDetailPage />} />
+          <Route path="/chords/new" element={<AddChord />} />
           <Route path="/songs" element={<SongsList />} />
         </Routes>
         {user ? <button onClick={handleLogout}>Log Out</button> : null}

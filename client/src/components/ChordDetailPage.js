@@ -4,11 +4,14 @@ import { useParams, useNavigate } from "react-router-dom"
 
 export default function ChordDetailPage() {
   const {user, setUser} = useContext(UserContext)
+  // const [currentChord, setCurrentChord] = useState(null)
   const [editChord, setEditChord] = useState(false)
   const { id } = useParams()
   const navigate = useNavigate()
+  // setCurrentChord(user.chord)
   console.log(user)
 
+  // if (!user) return <h1>loading data...</h1>
   const chord = user.chords.find(chord => chord.id === parseInt(id))
 
 
