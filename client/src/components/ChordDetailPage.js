@@ -6,9 +6,10 @@ export default function ChordDetailPage() {
   const {user, setUser} = useContext(UserContext)
   const [editChord, setEditChord] = useState(false)
   const { id } = useParams()
+  const navigate = useNavigate()
 
   const chord = user.chords.find(chord => chord.id === parseInt(id))
-  console.log(chord)
+
 
   const [chordFormData, setChordFormData] = useState({
     id: chord.id,
@@ -21,7 +22,9 @@ export default function ChordDetailPage() {
     user_id: chord.user_id,
     song_id: chord.song_id
   })
-  const navigate = useNavigate()
+
+  console.log(chord)
+
   console.log(user)
 
   if (!user) return <h1>loading data...</h1>
@@ -56,15 +59,6 @@ export default function ChordDetailPage() {
       }
     })
   }
-
-//   .then((resp) => {
-//     if (resp.ok) {
-//       resp.json().then((user) => setUser(user));
-//     } else {
-//       resp.json().then(e => console.log(e.errors))
-//     }
-//   });
-// }
 
   function handleDeleteClick() {
     console.log(chord.id)
