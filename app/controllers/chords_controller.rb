@@ -15,6 +15,7 @@ class ChordsController < ApplicationController
   end
 
   def create
+    song = @current_user.songs.find_by(id: params[:song_id])
     chord = @current_user.chords.create!(chord_params)
     render json: chord, status: :created
   end
@@ -42,7 +43,7 @@ class ChordsController < ApplicationController
   private 
 
   def chord_params
-    params.permit(:name, :notes, :inversion, :comments, :image_url)
+    params.permit(:name, :notes, :inversion, :comments, :image_url, :song_id)
   end
 
 end
