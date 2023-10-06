@@ -14,7 +14,7 @@ export default function App() {
   const {user, setUser} = useContext(UserContext)
   const navigate = useNavigate()
 
-  console.log(user)
+  // console.log(user)
 
   function handleLogout() {
     fetch(("/logout"), {

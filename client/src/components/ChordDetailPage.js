@@ -11,8 +11,10 @@ export default function ChordDetailPage() {
   console.log(chord)
 
   const [chordFormData, setChordFormData] = useState({
+    id: chord.id,
     name: chord.name,
     notes: chord.notes,
+    song: chord.song,
     inversion: chord.inversion,
     comments: chord.comments,
     image_url: chord.image_url,
@@ -34,10 +36,45 @@ export default function ChordDetailPage() {
     })
   }
 
-  function handleChordEditSubmit(e) {
+
+
+
+
+  function handleUpdateChord(e) {
     e.preventDefault()
+    fetch(`${chord.id}`, {
+      method: "PATCH", 
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(chordFormData)
+    })
+    .then((resp) => {
+      if (resp.ok) {
+        console.log(resp)
+        const newChords = user.chords.map(chord => chord.id === chordFormData.id? chordFormData : chord)
+        const udpatedUser = {...user, chords: newChords}
+        setUser(udpatedUser)
+      }
+    })
     console.log(chordFormData)
+    console.log(user)
+    // console.log(newChords)
+    
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   function handleDeleteClick() {
     console.log(chord.id)
@@ -51,22 +88,22 @@ export default function ChordDetailPage() {
     navigate('/chords')
   }
 
-  function handleEditChord() {
+  function handleShowEditChordForm() {
     setEditChord(!editChord)
   }
   
   return (
     <>
-      <h1>hello from chord deetz page</h1>
+      <h1>View, Edit, Delete the Chord Here</h1>
       <h1 key={chord.id}>{chord.name}</h1>
       <h3>Notes: {chord.notes}</h3>
       <h3>Inversion: {chord.inversion}</h3>
       <p>Notes: {chord.comments}</p>
       <br />
-      <button onClick={handleEditChord}>Edit Chord</button>
+      <button onClick={handleShowEditChordForm}>Edit Chord</button>
       <div>
         {!editChord ? null : 
-          <form onSubmit={handleChordEditSubmit}>
+          <form onSubmit={handleUpdateChord}>
             <input
               type="text"
               name="name"
