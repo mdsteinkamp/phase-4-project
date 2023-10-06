@@ -65,9 +65,10 @@ export default function ChordDetailPage() {
 
   function handleDeleteClick() {
     console.log(chord.id)
-    fetch(`chords/${chord.id}`, {
+    fetch(`${chord.id}`, {
       method: "DELETE",
     })
+    .then(resp => console.log(resp))
     const updatedChords = user.chords.filter(arrayChord => arrayChord.id !== chord.id)
     const updatedUser = {...user, chords: updatedChords}
     setUser(updatedUser)
@@ -80,7 +81,7 @@ export default function ChordDetailPage() {
   
   return (
     <>
-      <h1>View, Edit, Delete the Chord Here</h1>
+      <h3>View, Edit, Delete the Chord Here</h3>
       <h1 key={chord.id}>{chord.name}</h1>
       <h3>Notes: {chord.notes}</h3>
       <h3>Inversion: {chord.inversion}</h3>
