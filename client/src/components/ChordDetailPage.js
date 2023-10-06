@@ -26,7 +26,6 @@ export default function ChordDetailPage() {
 
   if (!user) return <h1>loading data...</h1>
 
-
   function handleChange(e) {
     const name = e.target.name
     const value = e.target.value
@@ -35,10 +34,6 @@ export default function ChordDetailPage() {
       [name]: value,
     })
   }
-
-
-
-
 
   function handleUpdateChord(e) {
     e.preventDefault()
@@ -51,30 +46,25 @@ export default function ChordDetailPage() {
     })
     .then((resp) => {
       if (resp.ok) {
-        console.log(resp)
-        const newChords = user.chords.map(chord => chord.id === chordFormData.id? chordFormData : chord)
-        const udpatedUser = {...user, chords: newChords}
-        setUser(udpatedUser)
+        resp.json().then((newChord) => {
+          const newChords = user.chords.map(chord => chord.id === newChord.id? chordFormData : chord)
+          const udpatedUser = {...user, chords: newChords}
+          setUser(udpatedUser)
+        })
+      } else {
+        resp.json().then(e => console.log(e.errors))
       }
     })
-    console.log(chordFormData)
-    console.log(user)
-    // console.log(newChords)
-    
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
+//   .then((resp) => {
+//     if (resp.ok) {
+//       resp.json().then((user) => setUser(user));
+//     } else {
+//       resp.json().then(e => console.log(e.errors))
+//     }
+//   });
+// }
 
   function handleDeleteClick() {
     console.log(chord.id)
@@ -82,7 +72,6 @@ export default function ChordDetailPage() {
       method: "DELETE",
     })
     const updatedChords = user.chords.filter(arrayChord => arrayChord.id !== chord.id)
-    console.log(updatedChords)
     const updatedUser = {...user, chords: updatedChords}
     setUser(updatedUser)
     navigate('/chords')

@@ -6,7 +6,6 @@ export default function SongsList() {
   const {user} = useContext(UserContext)
 
   const sortedChords = user.chords.sort((a, b) => a.id - b.id)
-  
 
   return (
     <div>
