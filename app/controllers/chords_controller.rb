@@ -14,6 +14,11 @@ class ChordsController < ApplicationController
     end
   end
 
+  def create
+    chord = @current_user.chords.create!(chord_params)
+    render json: chord, status: :created
+  end
+
   def update
     chord = @current_user.chords.find_by(id: params[:id])
     if chord

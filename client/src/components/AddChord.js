@@ -16,6 +16,15 @@ export default function AddChord() {
 
   if (!user) return <h1>loading data...</h1>
 
+  console.log(user)
+
+  const uniqueChords = [...new Map(user.chords.map(chord => [chord.song.id, chord])).values()]
+  const uniqueSongs = uniqueChords.map(chord => chord.song)
+  console.log(uniqueSongs)
+  // const uniques = [...new Set(uniqueSongs.map(item => item))]
+  // console.log(uniques)
+
+
   function handleChange(e) {
     const name = e.target.name
     const value = e.target.value
@@ -28,6 +37,22 @@ export default function AddChord() {
   function handleAddChord(e) {
     e.preventDefault()
     console.log(chordFormData)
+    fetch(`/chords`, {
+      method: "POST", 
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(chordFormData)
+    })
+    .then((resp) => {
+      if (resp.ok) {
+        resp.json().then((newChord) => {
+          console.log(newChord)
+        })
+      } else {
+        resp.json().then(e => console.log(e.errors))
+      }
+    })
   }
 
 
