@@ -4,6 +4,8 @@ import ChordPage from "./ChordPage"
 
 export default function SongsList() {
   const {user} = useContext(UserContext)
+
+  const sortedChords = user.chords.sort((a, b) => a.id - b.id)
   
 
   return (
@@ -12,7 +14,7 @@ export default function SongsList() {
       {user ? 
       <>
         <h4>here are your chords</h4>
-        <ul>{user.chords.map(chord => (
+        <ul>{sortedChords.map(chord => (
           <ChordPage key={chord.id} chord={chord} />
         ))}</ul>
       </>
