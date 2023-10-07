@@ -100,7 +100,7 @@ export default function AddChord() {
           />
           <select name="song_id" onChange={handleChange}>
             <option value="" hidden>Choose Song</option>
-            <option value="1">{uniqueSongs[0].title}</option>
+            {uniqueSongs.map((song, index) => <option key={song.id} value={song.id}>{song.title}</option>)}
           </select>
           <br />
           <button>Add</button>
@@ -108,3 +108,8 @@ export default function AddChord() {
     </>
   )
 }
+
+{/* <select name="song_id" onChange={handleChange}>
+<option value="" hidden>Choose Song</option>
+<option value="1">{uniqueSongs[0].title}</option>
+</select> */}
