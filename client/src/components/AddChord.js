@@ -15,7 +15,7 @@ export default function AddChord() {
   })
   const [songId, setSongId] = useState(null)
 
-  if (!user) return <h1>loading data...</h1>
+  if (!user) return <h1>Please log in!</h1>
 
   console.log(user)
   console.log(user.chords.find(chord => chord.song.id === 1).song)

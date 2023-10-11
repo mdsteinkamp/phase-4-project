@@ -78,10 +78,6 @@ export default function ChordDetailPage() {
     navigate('/chords')
   }
 
-  function handleShowEditChordForm() {
-    setEditChord(!editChord)
-  }
-  
   return (
     <>
       <h3>View, Edit, Delete the Chord Here</h3>
@@ -90,7 +86,7 @@ export default function ChordDetailPage() {
       <h3>Inversion: {chord.inversion}</h3>
       <p>Notes: {chord.comments}</p>
       <br />
-      <button onClick={handleShowEditChordForm}>Edit Chord</button>
+      <button onClick={() => setEditChord(!editChord)}>Edit Chord</button>
       <div>
         {!editChord ? null : 
           <form onSubmit={handleUpdateChord}>
