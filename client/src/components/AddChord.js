@@ -36,7 +36,7 @@ export default function AddChord() {
 
     })
   }
-
+  
   function handleAddChord(e) {
     e.preventDefault()
     // console.log(chordFormData)

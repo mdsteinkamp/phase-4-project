@@ -16,7 +16,7 @@ export default function ChordDetailPage() {
 
   // if (!user) return <h1>loading data...</h1>
   const chord = user.chords.find(chord => chord.id === parseInt(id))
-
+  // setCurrentChord(chord)
 
   const [chordFormData, setChordFormData] = useState({
     id: chord.id,
