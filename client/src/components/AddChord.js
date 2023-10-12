@@ -37,7 +37,6 @@ export default function AddChord() {
     })
   }
 
-
   function handleAddChord(e) {
     e.preventDefault()
     // console.log(chordFormData)
@@ -62,7 +61,6 @@ export default function AddChord() {
       }
     })
   }
-
 
   return (
     <>
@@ -111,12 +109,13 @@ export default function AddChord() {
           <button>Add</button>
           </form>
         {songAdded === false ? null : <h3>Chord Added!</h3>}
-        {errors === [] ? null : <ul>{errors.map(e => (
+        {errors === [] ? null : 
+          <ul>{errors.map(e => (
             <ul key={e}>
               <h3>{e}</h3>
             </ul>))}
-            </ul>}
-
+          </ul>
+        }
     </>
   )
 }

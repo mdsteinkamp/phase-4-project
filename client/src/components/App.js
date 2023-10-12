@@ -37,7 +37,7 @@ export default function App() {
           <Route path="/chords/new" element={<AddChord />} />
           <Route path="/songs" element={<SongsList />} />
         </Routes>
-        {user ? <button onClick={handleLogout}>Log Out</button> : null}
+        {user ? <button className="logoutButton" onClick={handleLogout}>Log Out</button> : null}
     </div>
   );
 }
