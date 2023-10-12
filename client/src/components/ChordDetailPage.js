@@ -6,7 +6,9 @@ export default function ChordDetailPage() {
   const {user, setUser} = useContext(UserContext)
   // const [currentChord, setCurrentChord] = useState(null)
   const [editChord, setEditChord] = useState(false)
-  const [errors, setErrors] = useState()
+  const [errors, setErrors] = useState([])
+  const [chordUpdated, setChordUpdated] = useState(false)
+  const [chordDeleted, setChordDeleted] = useState(false)
   const { id } = useParams()
   const navigate = useNavigate()
   // setCurrentChord(user.chord)
@@ -27,12 +29,6 @@ export default function ChordDetailPage() {
     user_id: chord.user_id,
     song_id: chord.song_id
   })
-
-
-
-  console.log(chord)
-
-  console.log(user)
 
   if (!user) return <h1>loading data...</h1>
 
@@ -60,9 +56,13 @@ export default function ChordDetailPage() {
           const newChords = user.chords.map(chord => chord.id === newChord.id? chordFormData : chord)
           const udpatedUser = {...user, chords: newChords}
           setUser(udpatedUser)
+          setChordUpdated(true)
+          setErrors([])
         })
       } else {
-        resp.json().then(e => console.log(e.errors))
+        resp.json().then(e => {
+          setErrors(e.errors)
+        })      
       }
     })
   }
@@ -76,6 +76,7 @@ export default function ChordDetailPage() {
     const updatedChords = user.chords.filter(arrayChord => arrayChord.id !== chord.id)
     const updatedUser = {...user, chords: updatedChords}
     setUser(updatedUser)
+    setChordDeleted(true)
     navigate('/chords')
   }
 
@@ -133,6 +134,13 @@ export default function ChordDetailPage() {
       </div>
       <br />
       <button onClick={handleDeleteClick}>RemoveChord</button>
+        {chordUpdated === false ? null : <h3>Chord Updated!</h3>}
+        {chordDeleted === false ? null : <h3>Chord Deleted!</h3>}
+        {errors === [] ? null : <ul>{errors.map(e => (
+            <ul key={e}>
+              <h3>{e}</h3>
+            </ul>))}
+            </ul>}
   </>
   )
 }
