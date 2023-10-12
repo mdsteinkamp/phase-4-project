@@ -14,21 +14,22 @@ export default function AddChord() {
     song_id: ""
   })
   const [songId, setSongId] = useState(null)
+  const [errors, setErrors] = useState([])
+  const [songAdded, setSongAdded] = useState(false)
 
   if (!user) return <h1>Please log in!</h1>
 
-  console.log(user)
-  console.log(user.chords.find(chord => chord.song.id === 1).song)
+  // console.log(user)
+  // console.log(user.chords.find(chord => chord.song.id === 1).song)
 
   const uniqueChords = [...new Map(user.chords.map(chord => [chord.song.id, chord])).values()]
   const uniqueSongs = uniqueChords.map(chord => chord.song)
-  console.log(uniqueSongs)
+  // console.log(uniqueSongs)
 
   function handleChange(e) {
     const name = e.target.name
     const value = e.target.value
     if (name === "song_id") {setSongId(value)}
-    console.log(songId)
     setChordFormData({
       ...chordFormData,
       [name]: value,
@@ -39,7 +40,7 @@ export default function AddChord() {
 
   function handleAddChord(e) {
     e.preventDefault()
-    console.log(chordFormData)
+    // console.log(chordFormData)
     fetch(`/chords`, {
       method: "POST", 
       headers: {
@@ -51,9 +52,13 @@ export default function AddChord() {
       if (resp.ok) {
         resp.json().then((newChord) => {
           console.log(newChord)
+          setSongAdded(true)
+          setErrors([])
         })
       } else {
-        resp.json().then(e => console.log(e.errors))
+        resp.json().then(e => {
+          setErrors(e.errors)
+        })
       }
     })
   }
@@ -104,12 +109,14 @@ export default function AddChord() {
           </select>
           <br />
           <button>Add</button>
-        </form>
+          </form>
+        {songAdded === false ? null : <h3>Song Added!</h3>}
+        {errors === [] ? null : <ul>{errors.map(e => (
+            <ul key={e}>
+              <h3>{e}</h3>
+            </ul>))}
+            </ul>}
+
     </>
   )
 }
-
-{/* <select name="song_id" onChange={handleChange}>
-<option value="" hidden>Choose Song</option>
-<option value="1">{uniqueSongs[0].title}</option>
-</select> */}

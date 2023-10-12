@@ -41,8 +41,8 @@ export default function SongsList() {
     })
     .then((resp) => {
       if (resp.ok) {
-        resp.json().then((newChord) => {
-          console.log(newChord)
+        resp.json().then((newSong) => {
+          console.log(newSong)
         })
       } else {
         resp.json().then(e => console.log(e.errors))
@@ -60,7 +60,7 @@ export default function SongsList() {
     <>
     <br />
     <br />
-      <button onClick={() => setAddSongForm(!addSongForm)}>Add Song</button>
+      <button onClick={() => setAddSongForm(!addSongForm)}>Add a Song</button>
       <div>
         {!addSongForm ? null : 
           <form onSubmit={handleAddSong}>
@@ -86,7 +86,7 @@ export default function SongsList() {
               onChange={handleChange}
             />         
             <br />
-            <button>Add Song</button>
+            <button>Add Song!</button>
           </form>
         }
       </div>
@@ -95,7 +95,7 @@ export default function SongsList() {
           <h3>{song.title}</h3>
           <h2>Structure: {song.structure}</h2>
         </ul>))}
-        </ul>
+      </ul>
 
     </>
   )

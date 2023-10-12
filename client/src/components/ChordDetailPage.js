@@ -6,6 +6,7 @@ export default function ChordDetailPage() {
   const {user, setUser} = useContext(UserContext)
   // const [currentChord, setCurrentChord] = useState(null)
   const [editChord, setEditChord] = useState(false)
+  const [errors, setErrors] = useState()
   const { id } = useParams()
   const navigate = useNavigate()
   // setCurrentChord(user.chord)
