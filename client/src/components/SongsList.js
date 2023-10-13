@@ -10,7 +10,6 @@ export default function SongsList() {
     structure: ""
   })
   console.log(user)
-  console.log(addSongForm)
   if (!user) return <h1>Please log in!</h1>
 
   const allSongs = user.chords.map(chord => chord.song)

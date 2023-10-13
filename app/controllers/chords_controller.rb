@@ -2,7 +2,8 @@ class ChordsController < ApplicationController
   skip_before_action :authorize, only: :index
 
   def index
-    render json: Chord.all
+    chords = Chord.all
+    render json: chords, include: :song
   end
 
   def show

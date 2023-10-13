@@ -1,5 +1,5 @@
 import { Route, Routes, useNavigate } from "react-router-dom"
-import { useContext } from "react"
+import { useContext, useState, useEffect } from "react"
 import { UserContext } from "./UserContext"
 import '../App.css'
 import NavBar from "./NavBar"
@@ -13,9 +13,16 @@ import AddChord from "./AddChord"
 
 export default function App() {
   const {user, setUser} = useContext(UserContext)
+  const [chords, setChords] = useState([])
   const navigate = useNavigate()
 
   // console.log(user)
+
+  useEffect(() => {
+    fetch('/chords')
+    .then(resp => resp.json())
+    .then(chords => console.log(chords))
+  })
 
   function handleLogout() {
     fetch(("/logout"), {
