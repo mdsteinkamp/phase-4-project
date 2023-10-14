@@ -13,16 +13,16 @@ import AddChord from "./AddChord"
 
 export default function App() {
   const {user, setUser} = useContext(UserContext)
-  const [chords, setChords] = useState([])
+  const [songs, setSongs] = useState([])
   const navigate = useNavigate()
 
   // console.log(user)
 
   useEffect(() => {
-    fetch('/chords')
+    fetch('/songs')
     .then(resp => resp.json())
-    .then(chords => console.log(chords))
-  })
+    .then(songs => setSongs(songs))
+  }, [])
 
   function handleLogout() {
     fetch(("/logout"), {
@@ -41,7 +41,7 @@ export default function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/chords" element={<ChordsList />} />
           <Route path="/chords/:id" element={<ChordDetailPage />} />
-          <Route path="/chords/new" element={<AddChord />} />
+          <Route path="/chords/new" element={<AddChord songs={songs}/>} />
           <Route path="/songs" element={<SongsList />} />
         </Routes>
         {user ? <button className="logoutButton" onClick={handleLogout}>Log Out</button> : null}

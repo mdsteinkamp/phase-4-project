@@ -1,7 +1,7 @@
 import { useContext, useState } from "react"
 import { UserContext } from "./UserContext"
 
-export default function AddChord() {
+export default function AddChord({ songs }) {
   const {user} = useContext(UserContext)
   const [chordFormData, setChordFormData] = useState({
     name: "",
@@ -16,14 +16,15 @@ export default function AddChord() {
   const [songId, setSongId] = useState(null)
   const [errors, setErrors] = useState([])
   const [songAdded, setSongAdded] = useState(false)
+  console.log(songs)
 
   if (!user) return <h1>Please log in!</h1>
 
   // console.log(user)
   // console.log(user.chords.find(chord => chord.song.id === 1).song)
 
-  const uniqueChords = [...new Map(user.chords.map(chord => [chord.song.id, chord])).values()]
-  const uniqueSongs = uniqueChords.map(chord => chord.song)
+  // const uniqueChords = [...new Map(user.chords.map(chord => [chord.song.id, chord])).values()]
+  // const uniqueSongs = uniqueChords.map(chord => chord.song)
   // console.log(uniqueSongs)
 
   function handleChange(e) {
@@ -103,7 +104,7 @@ export default function AddChord() {
           />
           <select name="song_id" onChange={handleChange}>
             <option value="" hidden>Choose Song</option>
-            {uniqueSongs.map((song, index) => <option key={song.id} value={song.id}>{song.title}</option>)}
+            {songs.map((song, index) => <option key={song.id} value={song.id}>{song.title}</option>)}
           </select>
           <br />
           <button>Add</button>

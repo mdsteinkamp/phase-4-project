@@ -9,7 +9,6 @@ export default function SongsList() {
     artist: "",
     structure: ""
   })
-  console.log(user)
   if (!user) return <h1>Please log in!</h1>
 
   const allSongs = user.chords.map(chord => chord.song)
