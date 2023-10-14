@@ -18,11 +18,7 @@ export default function App() {
 
   // console.log(user)
 
-  useEffect(() => {
-    fetch('/songs')
-    .then(resp => resp.json())
-    .then(songs => setSongs(songs))
-  }, [])
+
 
   function handleLogout() {
     fetch(("/logout"), {
@@ -41,7 +37,7 @@ export default function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/chords" element={<ChordsList />} />
           <Route path="/chords/:id" element={<ChordDetailPage />} />
-          <Route path="/chords/new" element={<AddChord songs={songs}/>} />
+          <Route path="/chords/new" element={<AddChord />} />
           <Route path="/songs" element={<SongsList />} />
         </Routes>
         {user ? <button className="logoutButton" onClick={handleLogout}>Log Out</button> : null}

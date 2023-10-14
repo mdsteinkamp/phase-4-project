@@ -18,11 +18,3 @@ export default function ChordPage({ chord }) {
     </>
   )
 }
-
-// .then((resp) => {
-//   if (resp.ok) {
-//     resp.json().then((user) => {
-//     setUser(user)
-//     navigate("/chords")
-//   })}
-// })
