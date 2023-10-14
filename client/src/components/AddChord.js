@@ -17,7 +17,6 @@ export default function AddChord() {
   const [songId, setSongId] = useState(null)
   const [errors, setErrors] = useState([])
   const [songAdded, setSongAdded] = useState(false)
-  console.log(songs)
 
   useEffect(() => {
     fetch('/songs')
@@ -25,15 +24,8 @@ export default function AddChord() {
     .then(songs => setSongs(songs))
   }, [])
   console.log(user)
+
   if (!user) return <h1>Please log in!</h1>
-
-
-  // console.log(user)
-  // console.log(user.chords.find(chord => chord.song.id === 1).song)
-
-  // const uniqueChords = [...new Map(user.chords.map(chord => [chord.song.id, chord])).values()]
-  // const uniqueSongs = uniqueChords.map(chord => chord.song)
-  // console.log(uniqueSongs)
 
   function handleChange(e) {
     const name = e.target.name
@@ -61,7 +53,6 @@ export default function AddChord() {
         resp.json().then((newChord) => {
           console.log(newChord)
           const newChords = [...user.chords, newChord]
-          // const updatedUser = {...user, chords: newChords}
           console.log(newChords)
           const udpatedUser = {...user, chords: newChords}
           setUser(udpatedUser)
@@ -75,15 +66,6 @@ export default function AddChord() {
       }
     })
   }
-
-  // if (resp.ok) {
-  //   resp.json().then((newChord) => {
-  //     const newChords = user.chords.map(chord => chord.id === newChord.id? chordFormData : chord)
-  //     const udpatedUser = {...user, chords: newChords}
-  //     setUser(udpatedUser)
-  //     setChordUpdated(true)
-  //     setErrors([])
-  //   })
 
   return (
     <>
