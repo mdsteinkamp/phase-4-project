@@ -42,9 +42,10 @@ export default function AddChord() {
     setChordFormData({
       ...chordFormData,
       [name]: value,
-
+      user_id: user.id
     })
   }
+  console.log(chordFormData)
   
   function handleAddChord(e) {
     e.preventDefault()
@@ -59,7 +60,8 @@ export default function AddChord() {
       if (resp.ok) {
         resp.json().then((newChord) => {
           console.log(newChord)
-          const newChords = user.chords.map(chord => chord.id === newChord.id? chordFormData : chord)
+          const newChords = [...user.chords, newChord]
+          // const updatedUser = {...user, chords: newChords}
           console.log(newChords)
           const udpatedUser = {...user, chords: newChords}
           setUser(udpatedUser)
