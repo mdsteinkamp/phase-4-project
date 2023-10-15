@@ -23,7 +23,6 @@ export default function AddChord() {
     .then(resp => resp.json())
     .then(songs => setSongs(songs))
   }, [])
-  console.log(user)
 
   if (!user) return <h1>Please log in!</h1>
 
@@ -37,7 +36,6 @@ export default function AddChord() {
       user_id: user.id
     })
   }
-  console.log(chordFormData)
   
   function handleAddChord(e) {
     e.preventDefault()
@@ -51,9 +49,7 @@ export default function AddChord() {
     .then((resp) => {
       if (resp.ok) {
         resp.json().then((newChord) => {
-          console.log(newChord)
           const newChords = [...user.chords, newChord]
-          console.log(newChords)
           const udpatedUser = {...user, chords: newChords}
           setUser(udpatedUser)
           setSongAdded(true)

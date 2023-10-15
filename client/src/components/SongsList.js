@@ -93,7 +93,7 @@ export default function SongsList() {
         }
       </div>
       <ul>{uniqueSongs.map(song => (
-        <NavLink to={`/songs/${song.id}`}>{song.title}</NavLink>))}
+        <NavLink to={`/songs/${song.id}`} key={song.id}>{song.title}</NavLink>))}
       </ul>
 
     </>
