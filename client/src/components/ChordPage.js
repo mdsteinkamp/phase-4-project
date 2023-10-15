@@ -14,6 +14,8 @@ export default function ChordPage({ chord }) {
         <div className="card">
           <h1 key={chord.id}>{chord.name}</h1>
           <h3>{chord.song.title} - {chord.song.artist}</h3>
+          Notes:
+          <h3>{chord.notes}</h3>
           <NavLink to={`/chords/${chord.id}`}>See Chord Details</NavLink>
         </div>
       </div>

@@ -11,13 +11,13 @@ export default function SongPage() {
 
   const song = user.chords.find(chord => chord.song.id === parseInt(id)).song
   const chords = user.chords.filter(chord => chord.song.title === song.title)
-  console.log(song, chords)
 
 
   return (
     <div>
-      <h1>song page here</h1>
-      <h3>{song.title}</h3>
+      <h1>{song.title}</h1>
+      by
+      <h2>{song.artist}</h2>
       <h2>Structure: {song.structure}</h2>
       <ul>{chords.map(chord => (
           <ChordPage key={chord.id} chord={chord} />
@@ -26,11 +26,3 @@ export default function SongPage() {
     </div>
   )
 }
-
-
-// <ul>{uniqueSongs.map(song => (
-//   <ul key={song.id}>
-//     <h3>{song.title}</h3>
-//     <h2>Structure: {song.structure}</h2>
-//   </ul>))}
-// </ul>
