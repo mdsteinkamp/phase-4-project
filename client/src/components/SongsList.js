@@ -1,5 +1,7 @@
 import { useContext, useState } from "react"
 import { UserContext } from "./UserContext"
+import { NavLink } from "react-router-dom"
+import SongPage from "./SongPage"
 
 export default function SongsList() {
   const {user} = useContext(UserContext)
@@ -18,6 +20,8 @@ export default function SongsList() {
     if (uniqueSongs.map(song => song.id).includes(newSong.id)) {
     } else {uniqueSongs.push(newSong)}
   }
+
+  console.log(uniqueSongs)
 
   function handleChange(e) {
     const name = e.target.name
@@ -89,10 +93,7 @@ export default function SongsList() {
         }
       </div>
       <ul>{uniqueSongs.map(song => (
-        <ul key={song.id}>
-          <h3>{song.title}</h3>
-          <h2>Structure: {song.structure}</h2>
-        </ul>))}
+        <NavLink to={`/songs/${song.id}`}>{song.title}</NavLink>))}
       </ul>
 
     </>
