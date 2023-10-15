@@ -18,7 +18,9 @@ export default function App() {
 
   // console.log(user)
 
-
+  function handleLogin() {
+    navigate("/login")
+  }
 
   function handleLogout() {
     fetch(("/logout"), {
@@ -40,7 +42,7 @@ export default function App() {
           <Route path="/chords/new" element={<AddChord />} />
           <Route path="/songs" element={<SongsList />} />
         </Routes>
-        {user ? <button className="logoutButton" onClick={handleLogout}>Log Out</button> : null}
+        {user ? <button className="logoutButton" onClick={handleLogout}>Log Out</button> : <button className="logoutButton" onClick={handleLogin}>Log In/Register</button>}
     </div>
   );
 }
