@@ -9,12 +9,14 @@ export default function ChordPage({ chord }) {
 
   return (
 
-    <>
-      <h1 key={chord.id}>{chord.name}</h1>
-      <h3>{chord.song.title} - {chord.song.artist}</h3>
-      <NavLink to={`/chords/${chord.id}`}>See Chord Details</NavLink>
-
-      <br />
-    </>
+    <div class="row">
+      <div class="column">
+        <div class="card">
+          <h1 key={chord.id}>{chord.name}</h1>
+          <h3>{chord.song.title} - {chord.song.artist}</h3>
+          <NavLink to={`/chords/${chord.id}`}>See Chord Details</NavLink>
+        </div>
+      </div>
+    </div>
   )
 }

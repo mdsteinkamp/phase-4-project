@@ -4,14 +4,36 @@
   color: rgba(233, 232, 236, 0.822);
 }
 
+* {
+  box-sizing: border-box;
+}
+
 a {
   line-height: 1em;
   margin: 10px;
 }
 
-.policyCard {
-  border: 1px solid white;
+.column {
+  float: left;
+  width: 33%;
+  padding: 0 10px;
 }
+
+.row {margin: 0 5px;}
+
+/* .row:after {
+  content: "";
+  display: table;
+  clear: both;
+} */
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(170, 34, 34, 0.2); /* this adds the "card" effect */
+  padding: 16px;
+  text-align: center;
+  background-color: #232541;
+}
+
 
 body {background-color: black;}
 
