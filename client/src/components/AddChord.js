@@ -17,6 +17,7 @@ export default function AddChord() {
   const [songId, setSongId] = useState(null)
   const [errors, setErrors] = useState([])
   const [songAdded, setSongAdded] = useState(false)
+  console.log(user)
 
   useEffect(() => {
     fetch('/songs')
@@ -104,7 +105,7 @@ export default function AddChord() {
           />
           <select name="song_id" onChange={handleChange}>
             <option value="" hidden>Choose Song</option>
-            {songs.map((song, index) => <option key={song.id} value={song.id}>{song.title}</option>)}
+            {user.user_songs.map((song, index) => <option key={song.id} value={song.id}>{song.title}</option>)}
           </select>
           <br />
           <button>Add</button>
@@ -120,3 +121,8 @@ export default function AddChord() {
     </>
   )
 }
+
+// <select name="song_id" onChange={handleChange}>
+// <option value="" hidden>Choose Song</option>
+// {songs.map((song, index) => <option key={song.id} value={song.id}>{song.title}</option>)}
+// </select>

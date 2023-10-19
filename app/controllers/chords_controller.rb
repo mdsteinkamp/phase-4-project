@@ -3,7 +3,7 @@ class ChordsController < ApplicationController
 
   def index
     chords = Chord.all
-    render json: chords
+    render json: chords,
   end
 
   def show
