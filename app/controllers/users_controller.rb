@@ -3,12 +3,12 @@ class UsersController < ApplicationController
 
   def index
     users = User.all
-    render json: users, include: {chords: {include: :song}}
+    render json: users, include: ['chords', 'chords.song']
   end
   
   def show
     user = @current_user
-    render json: user, include: {chords: {include: :song}}
+    render json: user, include: ['chords', 'chords.song']
 
   end
 
