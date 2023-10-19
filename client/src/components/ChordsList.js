@@ -4,10 +4,12 @@ import ChordPage from "./ChordPage"
 
 export default function SongsList() {
   const {user} = useContext(UserContext)
+  console.log(user)
 
   if (!user) return <h1>Please log in!</h1>
 
   const sortedChords = user.chords.sort((a, b) => a.id - b.id)
+  console.log(user.chords)
 
   return (
     <div>
