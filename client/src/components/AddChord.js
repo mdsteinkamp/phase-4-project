@@ -17,7 +17,10 @@ export default function AddChord({ songs }) {
   const [songId, setSongId] = useState(null)
   const [errors, setErrors] = useState([])
   const [songAdded, setSongAdded] = useState(false)
+  const [chosenSong, setChosenSong] = useState(null)
   console.log(user)
+  console.log(songs)
+  console.log(songId)
 
 
 
@@ -33,6 +36,7 @@ export default function AddChord({ songs }) {
       user_id: user.id
     })
   }
+  console.log(user.user_songs)
   
   function handleAddChord(e) {
     e.preventDefault()
@@ -47,8 +51,10 @@ export default function AddChord({ songs }) {
       if (resp.ok) {
         resp.json().then((newChord) => {
           const newChords = [...user.chords, newChord]
-          const newUserSongs = user.user_songs.map(song => song.id === songId ? song : songs.find(newSong => newSong.id === songId))
-          const udpatedUser = {...user, chords: newChords}
+          console.log(songs.find(song => song.id === parseInt(songId)))
+          const newUserSongs = [...user.user_songs, user.user_songs.includes(songs.find(song => song.id === parseInt(songId))) ? null : (songs.find(song => song.id === parseInt(songId))) ]
+
+          const udpatedUser = {...user, chords: newChords, user_songs: newUserSongs}
           setUser(udpatedUser)
           setSongAdded(true)
           setErrors([])
