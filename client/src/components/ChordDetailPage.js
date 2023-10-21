@@ -60,9 +60,7 @@ export default function ChordDetailPage() {
           setErrors([])
         })
       } else {
-        resp.json().then(e => {
-          setErrors(e.errors)
-        })      
+        resp.json().then(e => setErrors(e.errors))      
       }
     })
   }

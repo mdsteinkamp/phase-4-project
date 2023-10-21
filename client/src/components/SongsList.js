@@ -6,6 +6,7 @@ import SongPage from "./SongPage"
 export default function SongsList({ songs, onAddSong }) {
   const {user} = useContext(UserContext)
   const [addSongForm, setAddSongForm] = useState(false)
+  const [errors, setErrors] = useState([])
   const [formData, setFormData] = useState({
     title: "",
     artist: "",
@@ -51,7 +52,7 @@ export default function SongsList({ songs, onAddSong }) {
           handleNewSong(newSong)
         })
       } else {
-        resp.json().then(e => console.log(e.errors))
+        resp.json().then(e => setErrors(e.errors))
       }
     })
   }
@@ -99,7 +100,13 @@ export default function SongsList({ songs, onAddSong }) {
       <ul>{uniqueSongs.map(song => (
         <NavLink to={`/songs/${song.id}`} key={song.id}>{song.title}</NavLink>))}
       </ul>
-
+      {errors === [] ? null : 
+          <ul>{errors.map(e => (
+            <ul key={e}>
+              <h3>{e}</h3>
+            </ul>))}
+          </ul>
+        }
     </>
   )
 }
