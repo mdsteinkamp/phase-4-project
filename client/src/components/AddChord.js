@@ -27,8 +27,6 @@ export default function AddChord() {
 
   if (!user) return <h1>Please log in!</h1>
 
-  console.log(songs)
-
   function handleChange(e) {
     const name = e.target.name
     const value = e.target.value
@@ -53,7 +51,8 @@ export default function AddChord() {
       if (resp.ok) {
         resp.json().then((newChord) => {
           const newChords = [...user.chords, newChord]
-          const udpatedUser = {...user, chords: newChords}
+          const newUserSongs = [...user.user_songs, songs.find(song => song.id == songId)]
+          const udpatedUser = {...user, chords: newChords, user_songs: newUserSongs}
           setUser(udpatedUser)
           setSongAdded(true)
           setErrors([])
@@ -113,13 +112,13 @@ export default function AddChord() {
           <button>Add</button>
           </form>
         {songAdded === false ? null : <h3>Chord Added!</h3>}
-        {/* {errors === [] ? null : 
+        {errors === [] ? null : 
           <ul>{errors.map(e => (
             <ul key={e}>
               <h3>{e}</h3>
             </ul>))}
           </ul>
-        } */}
+        }
     </>
   )
 }
