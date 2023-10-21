@@ -27,6 +27,8 @@ export default function AddChord() {
 
   if (!user) return <h1>Please log in!</h1>
 
+  console.log(songs)
+
   function handleChange(e) {
     const name = e.target.name
     const value = e.target.value
@@ -105,7 +107,7 @@ export default function AddChord() {
           />
           <select name="song_id" onChange={handleChange}>
             <option value="" hidden>Choose Song</option>
-            {user.user_songs.map((song, index) => <option key={song.id} value={song.id}>{song.title}</option>)}
+            {songs.map((song, index) => <option key={song.id} value={song.id}>{song.title}</option>)}
           </select>
           <br />
           <button>Add</button>
