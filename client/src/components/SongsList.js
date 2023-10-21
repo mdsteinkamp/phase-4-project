@@ -14,19 +14,17 @@ export default function SongsList({ songs, onAddSong }) {
   })
   if (!user) return <h1>Please log in!</h1>
 
-  const allSongs = user.chords.map(chord => chord.song)
+  // const allSongs = user.chords.map(chord => chord.song)
 
-  const uniqueSongs = []
-  for (const newSong of allSongs) {
-    if (uniqueSongs.map(song => song.id).includes(newSong.id)) {
-    } else {uniqueSongs.push(newSong)}
-  }
+  // const uniqueSongs = []
+  // for (const newSong of allSongs) {
+  //   if (uniqueSongs.map(song => song.id).includes(newSong.id)) {
+  //   } else {uniqueSongs.push(newSong)}
+  // }
 
   function handleNewSong(song) {
     onAddSong(song)
   }
-
-  console.log(uniqueSongs)
 
   function handleChange(e) {
     const name = e.target.name
@@ -97,7 +95,7 @@ export default function SongsList({ songs, onAddSong }) {
           </form>
         }
       </div>
-      <ul>{uniqueSongs.map(song => (
+      <ul>{user.user_songs.map(song => (
         <NavLink to={`/songs/${song.id}`} key={song.id}>{song.title}</NavLink>))}
       </ul>
       {errors === [] ? null : 
@@ -110,9 +108,3 @@ export default function SongsList({ songs, onAddSong }) {
     </>
   )
 }
-
-
-/* <ul>{sortedChords.map(chord => (
-          <ChordPage key={chord.id} chord={chord} />
-          ))} */
-/* </ul> */

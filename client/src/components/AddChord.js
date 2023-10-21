@@ -18,13 +18,10 @@ export default function AddChord({ songs }) {
   const [errors, setErrors] = useState([])
   const [songAdded, setSongAdded] = useState(false)
   const [chosenSong, setChosenSong] = useState(null)
-  console.log(user)
   console.log(songs)
-  console.log(songId)
-
-
 
   if (!user) return <h1>Please log in!</h1>
+  console.log(user)
 
   function handleChange(e) {
     const name = e.target.name
@@ -36,7 +33,6 @@ export default function AddChord({ songs }) {
       user_id: user.id
     })
   }
-  console.log(user.user_songs)
   
   function handleAddChord(e) {
     e.preventDefault()
@@ -51,11 +47,12 @@ export default function AddChord({ songs }) {
       if (resp.ok) {
         resp.json().then((newChord) => {
           const newChords = [...user.chords, newChord]
-          console.log(songs.find(song => song.id === parseInt(songId)))
-          const newUserSongs = []
-          for (const newSong of songs) {
-            if (newUserSongs.map(song => song.id).includes(newSong.id)) {
-            } else {newUserSongs.push(newSong)}
+          const selectedSong = songs.find(song => song.id === parseInt(songId))
+          let newUserSongs = [...user.user_songs]
+          const hasSong = newUserSongs.filter(song => song.id === selectedSong.id)
+          console.log(hasSong)
+          if (hasSong.length === 0) {
+            newUserSongs.push(selectedSong)
           }
           const udpatedUser = {...user, chords: newChords, user_songs: newUserSongs}
           setUser(udpatedUser)
@@ -128,7 +125,8 @@ export default function AddChord({ songs }) {
   )
 }
 
-// <select name="song_id" onChange={handleChange}>
-// <option value="" hidden>Choose Song</option>
-// {songs.map((song, index) => <option key={song.id} value={song.id}>{song.title}</option>)}
-// </select>
+// const newUserSongs = []
+// for (const newSong of songs) {
+//   if (newUserSongs.map(song => song.id).includes(newSong.id)) {
+//   } else {newUserSongs.push(newSong)}
+// }
