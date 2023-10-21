@@ -18,7 +18,6 @@ export default function AddChord({ songs }) {
   const [errors, setErrors] = useState([])
   const [songAdded, setSongAdded] = useState(false)
   const [chosenSong, setChosenSong] = useState(null)
-  console.log(songs)
 
   if (!user) return <h1>Please log in!</h1>
   console.log(user)
@@ -50,7 +49,6 @@ export default function AddChord({ songs }) {
           const selectedSong = songs.find(song => song.id === parseInt(songId))
           let newUserSongs = [...user.user_songs]
           const hasSong = newUserSongs.filter(song => song.id === selectedSong.id)
-          console.log(hasSong)
           if (hasSong.length === 0) {
             newUserSongs.push(selectedSong)
           }

@@ -69,7 +69,14 @@ export default function ChordDetailPage() {
     })
     .then(resp => console.log(resp))
     const updatedChords = user.chords.filter(arrayChord => arrayChord.id !== chord.id)
-    const updatedUser = {...user, chords: updatedChords}
+    let updatedUserSongs = updatedChords.map(chord => chord.song)
+    // updatedUserSongs = [...new Set(updatedUserSongs)]
+    const newUserSongs = []
+    for (const song of updatedUserSongs) {
+      if (newUserSongs.map(song => song.id).includes(song.id)) {
+      } else {newUserSongs.push(song)}
+    }
+    const updatedUser = {...user, chords: updatedChords, user_songs: newUserSongs}
     setUser(updatedUser)
     setChordDeleted(true)
     navigate('/chords')
