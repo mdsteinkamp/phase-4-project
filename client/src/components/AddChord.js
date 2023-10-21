@@ -1,9 +1,9 @@
 import { useContext, useState, useEffect } from "react"
 import { UserContext } from "./UserContext"
 
-export default function AddChord() {
+export default function AddChord({ songs }) {
   const {user, setUser} = useContext(UserContext)
-  const [songs, setSongs] = useState([])
+  // const [songs, setSongs] = useState([])
   const [chordFormData, setChordFormData] = useState({
     name: "",
     notes: "",
@@ -17,13 +17,12 @@ export default function AddChord() {
   const [songId, setSongId] = useState(null)
   const [errors, setErrors] = useState([])
   const [songAdded, setSongAdded] = useState(false)
+  const [chosenSong, setChosenSong] = useState(null)
   console.log(user)
+  console.log(songs)
+  console.log(songId)
 
-  useEffect(() => {
-    fetch('/songs')
-    .then(resp => resp.json())
-    .then(songs => setSongs(songs))
-  }, [])
+
 
   if (!user) return <h1>Please log in!</h1>
 
@@ -37,6 +36,7 @@ export default function AddChord() {
       user_id: user.id
     })
   }
+  console.log(user.user_songs)
   
   function handleAddChord(e) {
     e.preventDefault()
@@ -51,7 +51,23 @@ export default function AddChord() {
       if (resp.ok) {
         resp.json().then((newChord) => {
           const newChords = [...user.chords, newChord]
-          const newUserSongs = [...user.user_songs, songs.find(song => song.id == songId)]
+          console.log(songs.find(song => song.id === parseInt(songId)))
+          const newUserSongs = []
+          for (const newSong of songs) {
+            if (newUserSongs.map(song => song.id).includes(newSong.id)) {
+            } else {newUserSongs.push(newSong)}
+          }
+          // const newChords = user.chords.map(chord => chord.id === newChord.id ? chordFormData : chord)
+
+
+          // const uniqueSongs = []
+          // for (const newSong of allSongs) {
+          //   if (uniqueSongs.map(song => song.id).includes(newSong.id)) {
+          //   } else {uniqueSongs.push(newSong)}
+          // }
+
+          // const newUserSongs = [...user.user_songs, user.user_songs.includes(songs.find(song => song.id === parseInt(songId))) ? null : (songs.find(song => song.id === parseInt(songId))) ]
+
           const udpatedUser = {...user, chords: newChords, user_songs: newUserSongs}
           setUser(udpatedUser)
           setSongAdded(true)
