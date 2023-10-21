@@ -52,7 +52,21 @@ export default function AddChord({ songs }) {
         resp.json().then((newChord) => {
           const newChords = [...user.chords, newChord]
           console.log(songs.find(song => song.id === parseInt(songId)))
-          const newUserSongs = [...user.user_songs, user.user_songs.includes(songs.find(song => song.id === parseInt(songId))) ? null : (songs.find(song => song.id === parseInt(songId))) ]
+          const newUserSongs = []
+          for (const newSong of songs) {
+            if (newUserSongs.map(song => song.id).includes(newSong.id)) {
+            } else {newUserSongs.push(newSong)}
+          }
+          // const newChords = user.chords.map(chord => chord.id === newChord.id ? chordFormData : chord)
+
+
+          // const uniqueSongs = []
+          // for (const newSong of allSongs) {
+          //   if (uniqueSongs.map(song => song.id).includes(newSong.id)) {
+          //   } else {uniqueSongs.push(newSong)}
+          // }
+
+          // const newUserSongs = [...user.user_songs, user.user_songs.includes(songs.find(song => song.id === parseInt(songId))) ? null : (songs.find(song => song.id === parseInt(songId))) ]
 
           const udpatedUser = {...user, chords: newChords, user_songs: newUserSongs}
           setUser(udpatedUser)
