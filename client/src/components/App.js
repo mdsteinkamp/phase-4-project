@@ -20,6 +20,12 @@ export default function App() {
 
   // console.log(user)
 
+  useEffect(() => {
+    fetch('/songs')
+    .then(resp => resp.json())
+    .then(songs => setSongs(songs))
+  }, [])
+
   function handleLogin() {
     navigate("/login")
   }
@@ -32,6 +38,10 @@ export default function App() {
     .then(navigate("/"))
   }
 
+  function handleNewSong(song) {
+    setSongs([...songs, song])
+  }
+
   return (
     <div className="App">
         <Header />
@@ -42,8 +52,8 @@ export default function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/chords" element={<ChordsList />} />
           <Route path="/chords/:id" element={<ChordDetailPage />} />
-          <Route path="/chords/new" element={<AddChord />} />
-          <Route path="/songs" element={<SongsList />} />
+          <Route path="/chords/new" element={<AddChord songs={songs}/>} />
+          <Route path="/songs" element={<SongsList songs={songs} onAddSong={handleNewSong}/>} />
           <Route path="/songs/:id" element={<SongPage />} />
         </Routes>
         {user ? <button className="logoutButton" onClick={handleLogout}>Log Out</button> : <button className="logoutButton" onClick={handleLogin}>Log In/Register</button>}

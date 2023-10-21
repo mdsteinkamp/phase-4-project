@@ -3,7 +3,7 @@ import { UserContext } from "./UserContext"
 import { NavLink } from "react-router-dom"
 import SongPage from "./SongPage"
 
-export default function SongsList() {
+export default function SongsList({ songs, onAddSong }) {
   const {user} = useContext(UserContext)
   const [addSongForm, setAddSongForm] = useState(false)
   const [formData, setFormData] = useState({
@@ -19,6 +19,10 @@ export default function SongsList() {
   for (const newSong of allSongs) {
     if (uniqueSongs.map(song => song.id).includes(newSong.id)) {
     } else {uniqueSongs.push(newSong)}
+  }
+
+  function handleNewSong(song) {
+    onAddSong(song)
   }
 
   console.log(uniqueSongs)
@@ -44,7 +48,7 @@ export default function SongsList() {
     .then((resp) => {
       if (resp.ok) {
         resp.json().then((newSong) => {
-          console.log(newSong)
+          handleNewSong(newSong)
         })
       } else {
         resp.json().then(e => console.log(e.errors))
