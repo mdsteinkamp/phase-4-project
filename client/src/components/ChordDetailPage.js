@@ -40,7 +40,7 @@ export default function ChordDetailPage() {
 
   function handleUpdateChord(e) {
     e.preventDefault()
-    fetch(`${chord.id}`, {
+    fetch(`/chords/${chord.id}`, {
       method: "PATCH", 
       headers: {
         "Content-Type": "application/json"
