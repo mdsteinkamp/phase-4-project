@@ -9,7 +9,6 @@ class UsersController < ApplicationController
   def show
     user = @current_user
     render json: user, include: ['chords', 'chords.song']
-
   end
 
   def create

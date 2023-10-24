@@ -47,6 +47,7 @@ export default function AddChord({ songs }) {
         resp.json().then((newChord) => {
           const newChords = [...user.chords, newChord]
           const selectedSong = songs.find(song => song.id === parseInt(songId))
+          delete selectedSong.chords
           let newUserSongs = [...user.user_songs]
           const hasSong = newUserSongs.filter(song => song.id === selectedSong.id)
           if (hasSong.length === 0) {

@@ -7,7 +7,7 @@ class User < ApplicationRecord
   validates :username, presence: true
 
   def user_songs
-    self.songs.uniq{ |song| song.id}
+    unique_songs = self.songs.uniq{ |song| song.id}
   end
   
 end
