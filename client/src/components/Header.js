@@ -1,6 +1,8 @@
 export default function Header() {
 
   return (
-    <h1>Song Chord Outliner</h1>
+    <div className="header-title">
+      <h1 >Song Chord Outliner</h1>
+    </div>
   )
 }
