@@ -1,57 +1,69 @@
 import { useContext, useState } from "react"
 import { UserContext } from "./UserContext"
 import { useParams, useNavigate } from "react-router-dom"
+import EditChordPage from "./EditChordPage"
 
 export default function ChordDetailPage() {
   const {user, setUser} = useContext(UserContext)
   // const [currentChord, setCurrentChord] = useState(null)
   const [editChord, setEditChord] = useState(false)
+  const [editedChord, setEditedChord] = useState(null)
   const [errors, setErrors] = useState([])
   const [chordUpdated, setChordUpdated] = useState(false)
   const [chordDeleted, setChordDeleted] = useState(false)
   const { id } = useParams()
+  const [paramsId, setparamsId] = useState(id)
   const navigate = useNavigate()
 
-  const chord = user.chords.find(chord => chord.id === parseInt(id))
-
-  const [chordFormData, setChordFormData] = useState({
-    id: chord.id,
-    name: chord.name,
-    notes: chord.notes,
-    song: chord.song,
-    inversion: chord.inversion,
-    comments: chord.comments,
-    image_url: chord.image_url,
-    user_id: chord.user_id,
-    song_id: chord.song_id
-  })
-
   if (!user) return <h1>loading data...</h1>
+
+  const chord = user.chords.find(chord => chord.id === parseInt(paramsId))
+
+  // const [chordFormData, setChordFormData] = useState({
+  //   id: chord.id,
+  //   name: chord.name,
+  //   notes: chord.notes,
+  //   song: chord.song,
+  //   inversion: chord.inversion,
+  //   comments: chord.comments,
+  //   image_url: chord.image_url,
+  //   user_id: chord.user_id,
+  //   song_id: chord.song_id
+  // })
+
   console.log(user)
 
-  function handleChange(e) {
-    const name = e.target.name
-    const value = e.target.value
-    setChordFormData({
-      ...chordFormData,
-      [name]: value,
-    })
+  // function handleChange(e) {
+  //   const name = e.target.name
+  //   const value = e.target.value
+  //   setChordFormData({
+  //     ...chordFormData,
+  //     [name]: value,
+  //   })
+  // }
+
+  function handleTransferChord(editedChord) {
+    console.log(editedChord)
+    setEditedChord(editedChord)
+    handleUpdateChord(editedChord)
   }
 
-  function handleUpdateChord(e) {
-    e.preventDefault()
+  function handleUpdateChord(editedChord) {
     fetch(`/chords/${chord.id}`, {
       method: "PATCH", 
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(chordFormData)
+      body: JSON.stringify(editedChord)
     })
     .then((resp) => {
       if (resp.ok) {
         resp.json().then((newChord) => {
-          const newChords = user.chords.map(chord => chord.id === newChord.id ? chordFormData : chord)
+          console.log(newChord)
+          const newChords = user.chords.map(chord => chord.id === newChord.id ? newChord : chord)
+          console.log(newChords)
           const udpatedUser = {...user, chords: newChords}
+          console.log(udpatedUser)
           setUser(udpatedUser)
           setChordUpdated(true)
           setErrors([])
@@ -92,49 +104,9 @@ export default function ChordDetailPage() {
       <br />
       <button onClick={() => setEditChord(!editChord)}>Edit Chord</button>
       <div>
-        {!editChord ? null : 
-          <form onSubmit={handleUpdateChord}>
-            <input
-              type="text"
-              name="name"
-              placeholder="Name"
-              value={chordFormData.name}
-              onChange={handleChange}
-            />
-            <input
-              type="text"
-              name="notes"
-              placeholder="Notes in Chord"
-              value={chordFormData.notes}
-              onChange={handleChange}
-            />
-            <input
-              type="text"
-              name="inversion"
-              placeholder="Inverted Chord?"
-              value={chordFormData.inversion}
-              onChange={handleChange}
-            />            
-            <input
-              type="text"
-              name="comments"
-              placeholder="Comments"
-              value={chordFormData.comments}
-              onChange={handleChange}
-            />
-            <input
-              type="ted"
-              name="image_url"
-              placeholder="Image URL"
-              value={chordFormData.image}
-              onChange={handleChange}
-            />
-            <br />
-            <button>Update</button>
-          </form>
-        }
+        {!editChord ? null : <EditChordPage chord={chord} onUpdateChord={handleTransferChord}/>}
       </div>
-      <br />
+
       <button onClick={handleDeleteClick}>RemoveChord</button>
         {chordUpdated === false ? null : <h3>Chord Updated!</h3>}
         {chordDeleted === false ? null : <h3>Chord Deleted!</h3>}
