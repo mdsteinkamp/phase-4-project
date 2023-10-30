@@ -10,22 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_10_03_232933) do
+ActiveRecord::Schema.define(version: 2023_10_30_025105) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "chords", force: :cascade do |t|
-    t.string "name"
-    t.string "notes"
-    t.string "inversion"
-    t.text "comments"
-    t.string "image_url"
-    t.integer "user_id"
-    t.integer "song_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
+# Could not dump table "chords" because of following StandardError
+#   Unknown type 'chord_inversion' for column 'inversion'
 
   create_table "songs", force: :cascade do |t|
     t.string "title"

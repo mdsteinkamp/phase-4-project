@@ -29,6 +29,8 @@ module ReactRailsApiProjectTemplate
     # https://owasp.org/www-community/SameSite
     config.action_dispatch.cookies_same_site_protection = :strict
 
+    config.active_record.schema_format = :sql
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
 
