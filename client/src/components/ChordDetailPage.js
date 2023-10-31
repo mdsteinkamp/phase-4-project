@@ -74,6 +74,19 @@ export default function ChordDetailPage() {
     })
   }
 
+  function renderSwitch(chord) {
+    switch(chord.inversion) {
+      case "root_position":
+        return "Root Position"
+      case "first_inversion":
+        return "First Inversion"
+      case "second_inversion":
+        return "Second Inversion"
+      case "third_inversion":
+        return "Third Inversion"
+    }
+  }
+
   function handleDeleteClick() {
     console.log(chord.id)
     fetch(`${chord.id}`, {
@@ -99,7 +112,7 @@ export default function ChordDetailPage() {
       <h3>View, Edit, Delete the Chord Here</h3>
       <h1 key={chord.id}>{chord.name}</h1>
       <h3>Notes: {chord.notes}</h3>
-      <h3>Inversion: {chord.inversion}</h3>
+      <h3>Inversion: {renderSwitch(chord)}</h3>
       <p>Notes: {chord.comments}</p>
       <br />
       <button onClick={() => setEditChord(!editChord)}>Edit Chord</button>

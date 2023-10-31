@@ -20,7 +20,6 @@ export default function AddChord({ songs }) {
   const [chosenSong, setChosenSong] = useState(null)
 
   if (!user) return <h1>Please log in!</h1>
-  console.log(user)
 
   function handleChange(e) {
     const name = e.target.name

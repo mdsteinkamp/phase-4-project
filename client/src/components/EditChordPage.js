@@ -25,7 +25,6 @@ export default function EditChordPage({ chord, onUpdateChord }) {
 
   function handleUpdateChord(e) {
     e.preventDefault()
-    // console.log(chordFormData)
     onUpdateChord(chordFormData)
   }
 
