@@ -46,13 +46,20 @@ export default function EditChordPage({ chord, onUpdateChord }) {
           value={chordFormData.notes}
           onChange={handleChange}
         />
-        <input
+        <select name="inversion" onChange={handleChange}>
+          <option value="" hidden>Select Inversion</option>
+          <option value="root_position">Root Position</option>
+          <option value="first_inversion">First Inversion</option>
+          <option value="second_inversion">Second Inversion</option>
+          <option value="third_inversion">Third Inversion</option>
+        </select>
+        {/* <input
           type="text"
           name="inversion"
           placeholder="Inverted Chord?"
           value={chordFormData.inversion}
           onChange={handleChange}
-        />            
+        />             */}
         <input
           type="text"
           name="comments"

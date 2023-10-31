@@ -87,9 +87,9 @@ export default function AddChord({ songs }) {
           <select name="inversion" onChange={handleChange}>
             <option value="" hidden>Select Inversion</option>
             <option value="root_position">Root Position</option>
-            <option value="root_position">First Inversion</option>
-            <option value="root_position">Second Inversion</option>
-            <option value="root_position">Third Inversion</option>
+            <option value="first_inversion">First Inversion</option>
+            <option value="second_inversion">Second Inversion</option>
+            <option value="third_inversion">Third Inversion</option>
           </select>
           {/* <input
             type="text"
