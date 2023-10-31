@@ -4,9 +4,9 @@ class AddInversionTypeColumnToChords < ActiveRecord::Migration[6.1]
   end
 
   def down
-    remove_column :chords, :inversion_type
+    remove_column :chords, :inversion
     execute <<-SQL
-      DROP TYPE inversion;
+      DROP TYPE inversion_type;
     SQL
   end
 end
