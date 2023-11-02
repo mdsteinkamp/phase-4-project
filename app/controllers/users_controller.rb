@@ -9,6 +9,9 @@ class UsersController < ApplicationController
   def show
     user = @current_user
     render json: user, include: ['chords', 'chords.song']
+  rescue ActiveRecord::RecordNotFoud
+    render_not_found_response
+  end
   end
 
   def create
@@ -21,6 +24,10 @@ class UsersController < ApplicationController
 
   def user_params
     params.permit(:username, :password, :password_confirmation)
+  end
+
+  def render_not_found_response
+    render json: { error: "User not found" }, status: :not_found
   end
 
 end

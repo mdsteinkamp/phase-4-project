@@ -8,7 +8,6 @@ class SongsController < ApplicationController
   def create
     song = Song.create!(song_params)
     render json: song, status: :created
-
   end
 
   private
