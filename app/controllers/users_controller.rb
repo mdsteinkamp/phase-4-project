@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     if user
       render json: user, include: ['chords', 'chords.song']
     else
-      render_not_found_response
+      render json: { error: "User not found" }, status: :not_found
     end
   end
 
@@ -26,9 +26,5 @@ class UsersController < ApplicationController
   def user_params
     params.permit(:username, :password, :password_confirmation)
   end
-
-  def render_not_found_response
-    render json: { error: "User not found" }, status: :not_found
-  end
-
+  
 end
