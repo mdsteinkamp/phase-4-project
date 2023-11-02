@@ -113,6 +113,7 @@ export default function ChordDetailPage() {
       <h1 key={chord.id}>{chord.name}</h1>
       <h3>Notes: {chord.notes}</h3>
       <h3>Inversion: {renderSwitch(chord)}</h3>
+      <img className="chordimage" src={chord.image_url}/>
       <p>Notes: {chord.comments}</p>
       <br />
       <button onClick={() => setEditChord(!editChord)}>Edit Chord</button>

@@ -8,10 +8,11 @@ class UsersController < ApplicationController
   
   def show
     user = @current_user
-    render json: user, include: ['chords', 'chords.song']
-  rescue ActiveRecord::RecordNotFoud
-    render_not_found_response
-  end
+    if user
+      render json: user, include: ['chords', 'chords.song']
+    else
+      render_not_found_response
+    end
   end
 
   def create
