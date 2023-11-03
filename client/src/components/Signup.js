@@ -1,5 +1,6 @@
 import { useState, useContext } from "react"
 import { UserContext } from "./UserContext"
+import { useNavigate } from "react-router-dom"
 
 export default function Signup({ onSignup }){
   const [formData, setFormData] = useState({
@@ -7,8 +8,9 @@ export default function Signup({ onSignup }){
     password: "",
     passwordConfirmation: ""
   })
-  const {user, setUser} = useContext(UserContext)
+  const {setUser} = useContext(UserContext)
 
+  const navigate = useNavigate()
 
   function handleChange(e) {
     const name = e.target.name
@@ -30,7 +32,8 @@ export default function Signup({ onSignup }){
     })
     .then((resp) => {
       if (resp.ok) {
-        resp.json().then((user) => setUser(user));
+        resp.json().then((user) => setUser(user))
+        navigate("/chords")
       } else {
         resp.json().then(e => console.log(e.errors))
       }

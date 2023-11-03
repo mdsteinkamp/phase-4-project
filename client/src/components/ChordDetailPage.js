@@ -5,7 +5,6 @@ import EditChordPage from "./EditChordPage"
 
 export default function ChordDetailPage() {
   const {user, setUser} = useContext(UserContext)
-  // const [currentChord, setCurrentChord] = useState(null)
   const [editChord, setEditChord] = useState(false)
   const [editedChord, setEditedChord] = useState(null)
   const [errors, setErrors] = useState([])
@@ -18,29 +17,6 @@ export default function ChordDetailPage() {
   if (!user) return <h1>loading data...</h1>
 
   const chord = user.chords.find(chord => chord.id === parseInt(paramsId))
-
-  // const [chordFormData, setChordFormData] = useState({
-  //   id: chord.id,
-  //   name: chord.name,
-  //   notes: chord.notes,
-  //   song: chord.song,
-  //   inversion: chord.inversion,
-  //   comments: chord.comments,
-  //   image_url: chord.image_url,
-  //   user_id: chord.user_id,
-  //   song_id: chord.song_id
-  // })
-
-  console.log(user)
-
-  // function handleChange(e) {
-  //   const name = e.target.name
-  //   const value = e.target.value
-  //   setChordFormData({
-  //     ...chordFormData,
-  //     [name]: value,
-  //   })
-  // }
 
   function handleTransferChord(editedChord) {
     console.log(editedChord)
@@ -95,7 +71,6 @@ export default function ChordDetailPage() {
     .then(resp => console.log(resp))
     const updatedChords = user.chords.filter(arrayChord => arrayChord.id !== chord.id)
     let updatedUserSongs = updatedChords.map(chord => chord.song)
-    // updatedUserSongs = [...new Set(updatedUserSongs)]
     const newUserSongs = []
     for (const song of updatedUserSongs) {
       if (newUserSongs.map(song => song.id).includes(song.id)) {

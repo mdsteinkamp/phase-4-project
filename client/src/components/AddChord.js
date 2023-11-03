@@ -3,7 +3,6 @@ import { UserContext } from "./UserContext"
 
 export default function AddChord({ songs }) {
   const {user, setUser} = useContext(UserContext)
-  // const [songs, setSongs] = useState([])
   const [chordFormData, setChordFormData] = useState({
     name: "",
     notes: "",
@@ -16,7 +15,7 @@ export default function AddChord({ songs }) {
   })
   const [songId, setSongId] = useState(null)
   const [errors, setErrors] = useState([])
-  const [songAdded, setSongAdded] = useState(false)
+  const [chordAdded, setChordAdded] = useState(false)
   const [chosenSong, setChosenSong] = useState(null)
 
   if (!user) return <h1>Please log in!</h1>
@@ -54,7 +53,7 @@ export default function AddChord({ songs }) {
           }
           const udpatedUser = {...user, chords: newChords, user_songs: newUserSongs}
           setUser(udpatedUser)
-          setSongAdded(true)
+          setChordAdded(true)
           setErrors([])
         })
       } else {
@@ -90,13 +89,6 @@ export default function AddChord({ songs }) {
             <option value="second_inversion">Second Inversion</option>
             <option value="third_inversion">Third Inversion</option>
           </select>
-          {/* <input
-            type="text"
-            name="inversion"
-            placeholder="Inverted Chord?"
-            value={chordFormData.inversion}
-            onChange={handleChange}
-          />             */}
           <input
             type="text"
             name="comments"
@@ -118,7 +110,7 @@ export default function AddChord({ songs }) {
           <br />
           <button>Add</button>
           </form>
-        {songAdded === false ? null : <h3>Chord Added!</h3>}
+        {chordAdded === false ? null : <h3>Chord Added!</h3>}
         {errors === [] ? null : 
           <ul>{errors.map(e => (
             <ul key={e}>
@@ -129,9 +121,3 @@ export default function AddChord({ songs }) {
     </>
   )
 }
-
-// const newUserSongs = []
-// for (const newSong of songs) {
-//   if (newUserSongs.map(song => song.id).includes(newSong.id)) {
-//   } else {newUserSongs.push(newSong)}
-// }

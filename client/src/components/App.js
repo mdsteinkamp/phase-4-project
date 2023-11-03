@@ -18,8 +18,6 @@ export default function App() {
   const [songs, setSongs] = useState([])
   const navigate = useNavigate()
 
-  // console.log(user)
-
   useEffect(() => {
     fetch('/songs')
     .then(resp => resp.json())

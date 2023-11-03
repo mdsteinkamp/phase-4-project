@@ -7,20 +7,14 @@ export default function SongsList({ songs, onAddSong }) {
   const {user} = useContext(UserContext)
   const [addSongForm, setAddSongForm] = useState(false)
   const [errors, setErrors] = useState([])
+  const [songAdded, setSongAdded] = useState(false)
+
   const [formData, setFormData] = useState({
     title: "",
     artist: "",
     structure: ""
   })
   if (!user) return <h1>Please log in!</h1>
-
-  // const allSongs = user.chords.map(chord => chord.song)
-
-  // const uniqueSongs = []
-  // for (const newSong of allSongs) {
-  //   if (uniqueSongs.map(song => song.id).includes(newSong.id)) {
-  //   } else {uniqueSongs.push(newSong)}
-  // }
 
   function handleNewSong(song) {
     onAddSong(song)
@@ -48,18 +42,14 @@ export default function SongsList({ songs, onAddSong }) {
       if (resp.ok) {
         resp.json().then((newSong) => {
           handleNewSong(newSong)
+          setSongAdded(true)
+
         })
       } else {
         resp.json().then(e => setErrors(e.errors))
       }
     })
   }
-
-  // resp.json().then((newChord) => {
-  //   const newChords = user.chords.map(chord => chord.id === newChord.id? chordFormData : chord)
-  //   const udpatedUser = {...user, chords: newChords}
-  //   setUser(udpatedUser)
-  // })
 
   return (
     <>
@@ -94,6 +84,7 @@ export default function SongsList({ songs, onAddSong }) {
             <button>Add Song!</button>
           </form>
         }
+        {songAdded === false ? null : <h3>Song Added!</h3>}
       </div>
       <ul>{user.user_songs.map(song => (
         <NavLink to={`/songs/${song.id}`} key={song.id}>{song.title}</NavLink>))}

@@ -16,7 +16,6 @@ class ChordsController < ApplicationController
   end
 
   def create
-    # song = Song.find_by(id: params[:song_id])
     chord = @current_user.chords.create!(chord_params)
     render json: chord, status: :created
   end
