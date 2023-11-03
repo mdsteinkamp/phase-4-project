@@ -49,7 +49,7 @@ export default function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/chords" element={<ChordsList />} />
-          <Route path="/chords/:id" element={<ChordDetailPage />} />
+          <Route path="/songs/:id/chords/:id" element={<ChordDetailPage />} />
           <Route path="/chords/new" element={<AddChord songs={songs}/>} />
           <Route path="/songs" element={<SongsList songs={songs} onAddSong={handleNewSong}/>} />
           <Route path="/songs/:id" element={<SongPage />} />

@@ -16,7 +16,7 @@ export default function ChordPage({ chord }) {
           <h3>{chord.song.title} - {chord.song.artist}</h3>
           Notes:
           <h3>{chord.notes}</h3>
-          <NavLink to={`/chords/${chord.id}`}>See Chord Details</NavLink>
+          <NavLink to={`/songs/${chord.song.id}/chords/${chord.id}`}>See Chord Details</NavLink>
         </div>
       </div>
     </div>

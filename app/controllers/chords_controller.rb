@@ -7,7 +7,12 @@ class ChordsController < ApplicationController
   end
 
   def show
-    chord = Chord.find_by(id: params[:id])
+    if params[:song_id]
+      song = Song.find_by(id: params[:song_id])
+      chord = song.chord.find_by(id: params[:id])
+    else
+      chord = Chord.find_by(id: params[:id])
+    end
     if chord
       render json: chord
     else
