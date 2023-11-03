@@ -2,6 +2,13 @@
 
 My Project is an application designed to outline song structures with their related chords with the aim to learn songs & chord fingerings across the fretboard. The app has User registration & login/logout functionality. When logged in a User can add songs to their account, then add chords to a song via a form which will display all chords and their info on a individual song page. Each chord can be viewed in detail to see its notes, an image of the tab for help with fingering and comments that the user provides. 
 
+# Installation
+
+```
+$ bundle install
+$ npm install --prefix client
+```
+
 
 # Project Template: React/Rails API
 
