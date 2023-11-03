@@ -8,7 +8,15 @@ My Project is an application designed to outline song structures with their rela
 $ bundle install
 $ npm install --prefix client
 ```
+Then to run the app, first start the Rails server:
+```
+$ rails s
+```
 
+Then the React server:
+```
+$ npm start --prefix client
+```
 
 # Project Template: React/Rails API
 
