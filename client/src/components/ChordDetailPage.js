@@ -6,12 +6,12 @@ import EditChordPage from "./EditChordPage"
 export default function ChordDetailPage() {
   const {user, setUser} = useContext(UserContext)
   const [editChord, setEditChord] = useState(false)
-  const [editedChord, setEditedChord] = useState(null)
+  const [setEditedChord] = useState(null)
   const [errors, setErrors] = useState([])
   const [chordUpdated, setChordUpdated] = useState(false)
   const [chordDeleted, setChordDeleted] = useState(false)
   const { id } = useParams()
-  const [paramsId, setparamsId] = useState(id)
+  const [paramsId] = useState(id)
   const navigate = useNavigate()
 
   if (!user) return <h1>loading data...</h1>
@@ -19,7 +19,7 @@ export default function ChordDetailPage() {
   const chord = user.chords.find(chord => chord.id === parseInt(paramsId))
 
   function handleTransferChord(editedChord) {
-    console.log(editedChord)
+    // console.log(editedChord)
     setEditedChord(editedChord)
     handleUpdateChord(editedChord)
   }
@@ -35,11 +35,11 @@ export default function ChordDetailPage() {
     .then((resp) => {
       if (resp.ok) {
         resp.json().then((newChord) => {
-          console.log(newChord)
+          // console.log(newChord)
           const newChords = user.chords.map(chord => chord.id === newChord.id ? newChord : chord)
-          console.log(newChords)
+          // console.log(newChords)
           const udpatedUser = {...user, chords: newChords}
-          console.log(udpatedUser)
+          // console.log(udpatedUser)
           setUser(udpatedUser)
           setChordUpdated(true)
           setErrors([])
