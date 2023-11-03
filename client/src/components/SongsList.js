@@ -1,7 +1,6 @@
 import { useContext, useState } from "react"
 import { UserContext } from "./UserContext"
 import { NavLink } from "react-router-dom"
-import SongPage from "./SongPage"
 
 export default function SongsList({ songs, onAddSong }) {
   const {user} = useContext(UserContext)
