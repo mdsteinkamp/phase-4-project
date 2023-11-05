@@ -1,7 +1,7 @@
 import { useContext } from "react"
 import { UserContext } from "./UserContext"
 import { useParams } from "react-router-dom"
-import ChordPage from "./ChordPage"
+import ChordPage from "./ChordCard"
 
 export default function SongPage() {
   const {user, setUser} = useContext(UserContext)

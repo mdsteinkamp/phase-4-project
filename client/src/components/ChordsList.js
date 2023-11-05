@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { UserContext } from "./UserContext"
-import ChordPage from "./ChordPage"
+import ChordPage from "./ChordCard"
 
 export default function SongsList() {
   const {user} = useContext(UserContext)
