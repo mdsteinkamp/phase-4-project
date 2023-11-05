@@ -65,7 +65,7 @@ export default function ChordDetailPage() {
 
   function handleDeleteClick() {
     console.log(chord.id)
-    fetch(`${chord.id}`, {
+    fetch(`/chords/${chord.id}`, {
       method: "DELETE",
     })
     .then(resp => console.log(resp))
