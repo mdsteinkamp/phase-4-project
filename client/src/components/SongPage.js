@@ -1,7 +1,7 @@
 import { useContext } from "react"
 import { UserContext } from "./UserContext"
 import { useParams } from "react-router-dom"
-import ChordPage from "./ChordCard"
+import ChordCard from "./ChordCard"
 
 export default function SongPage() {
   const {user, setUser} = useContext(UserContext)
@@ -20,7 +20,7 @@ export default function SongPage() {
       <h2>{song.artist}</h2>
       <h2>Structure: {song.structure}</h2>
       <ul>{chords.map(chord => (
-          <ChordPage key={chord.id} chord={chord} />
+          <ChordCard key={chord.id} chord={chord} />
           ))}
         </ul>
     </div>
