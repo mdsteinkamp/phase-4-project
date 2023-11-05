@@ -6,7 +6,7 @@ import EditChordPage from "./EditChordPage"
 export default function ChordDetailPage() {
   const {user, setUser} = useContext(UserContext)
   const [editChord, setEditChord] = useState(false)
-  const [setEditedChord] = useState(null)
+  const [editedChord, setEditedChord] = useState(null)
   const [errors, setErrors] = useState([])
   const [chordUpdated, setChordUpdated] = useState(false)
   const [chordDeleted, setChordDeleted] = useState(false)
