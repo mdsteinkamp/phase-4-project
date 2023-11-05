@@ -35,11 +35,8 @@ export default function ChordDetailPage() {
     .then((resp) => {
       if (resp.ok) {
         resp.json().then((newChord) => {
-          // console.log(newChord)
           const newChords = user.chords.map(chord => chord.id === newChord.id ? newChord : chord)
-          // console.log(newChords)
           const udpatedUser = {...user, chords: newChords}
-          // console.log(udpatedUser)
           setUser(udpatedUser)
           setChordUpdated(true)
           setErrors([])
