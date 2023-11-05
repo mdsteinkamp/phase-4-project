@@ -19,7 +19,6 @@ export default function ChordDetailPage() {
   const chord = user.chords.find(chord => chord.id === parseInt(paramsId))
 
   function handleTransferChord(editedChord) {
-    // console.log(editedChord)
     setEditedChord(editedChord)
     handleUpdateChord(editedChord)
   }
@@ -61,7 +60,6 @@ export default function ChordDetailPage() {
   }
 
   function handleDeleteClick() {
-    console.log(chord.id)
     fetch(`/chords/${chord.id}`, {
       method: "DELETE",
     })
