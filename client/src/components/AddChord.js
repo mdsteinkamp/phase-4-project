@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react"
+import { useContext, useState } from "react"
 import { UserContext } from "./UserContext"
 
 export default function AddChord({ songs }) {
@@ -16,7 +16,6 @@ export default function AddChord({ songs }) {
   const [songId, setSongId] = useState(null)
   const [errors, setErrors] = useState([])
   const [chordAdded, setChordAdded] = useState(false)
-  const [chosenSong, setChosenSong] = useState(null)
 
   if (!user) return <h1>Please log in!</h1>
 
