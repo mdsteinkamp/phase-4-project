@@ -63,7 +63,7 @@ export default function EditChordPage({ chord, onUpdateChord }) {
           type="ted"
           name="image_url"
           placeholder="Image URL"
-          value={chordFormData.image}
+          value={chordFormData.image_url}
           onChange={handleChange}
         />
         <br />
