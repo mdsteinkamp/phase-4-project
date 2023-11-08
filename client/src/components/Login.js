@@ -7,6 +7,7 @@ export default function Login() {
     username: "",
     password: "",
   })
+  const [errors, setErrors] = useState([])
   const {user, setUser} = useContext(UserContext)
 
   const navigate = useNavigate()
@@ -34,7 +35,12 @@ export default function Login() {
         resp.json().then((user) => {
         setUser(user)
         navigate("/chords")
-      })}
+      })} else {
+        resp.json().then(e => {
+          setErrors(e.errors)
+          console.log(errors)
+        })
+      }
     })
 }
 
@@ -64,6 +70,13 @@ export default function Login() {
         <Link to="/signup">
           <button>Register Here</button>
         </Link>
+      {errors.length > 0 &&
+        <ul>{errors.map(e => (
+          <ul key={e}>
+            <h3>{e}</h3>
+          </ul>))}
+        </ul>
+      }
     </div>
   )
 
