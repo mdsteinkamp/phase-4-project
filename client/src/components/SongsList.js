@@ -88,7 +88,7 @@ export default function SongsList({ songs, onAddSong }) {
       <ul>{user.user_songs.map(song => (
         <NavLink to={`/songs/${song.id}`} key={song.id}>{song.title}</NavLink>))}
       </ul>
-      {errors === [] ? null : 
+      {errors.length > 0 && 
           <ul>{errors.map(e => (
             <ul key={e}>
               <h3>{e}</h3>
