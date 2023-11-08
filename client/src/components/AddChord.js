@@ -110,7 +110,7 @@ export default function AddChord({ songs }) {
           <button>Add</button>
           </form>
         {chordAdded === false ? null : <h3>Chord Added!</h3>}
-        {errors === [] ? null : 
+        {errors.length > 0 &&
           <ul>{errors.map(e => (
             <ul key={e}>
               <h3>{e}</h3>
