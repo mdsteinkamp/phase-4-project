@@ -94,7 +94,7 @@ export default function ChordDetailPage() {
       <button onClick={handleDeleteClick}>RemoveChord</button>
         {chordUpdated === false ? null : <h3>Chord Updated!</h3>}
         {chordDeleted === false ? null : <h3>Chord Deleted!</h3>}
-        {errors === [] ? null : <ul>{errors.map(e => (
+        {errors.length > 0 && <ul>{errors.map(e => (
             <ul key={e}>
               <h3>{e}</h3>
             </ul>))}
